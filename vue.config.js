@@ -3,11 +3,11 @@ module.exports={
         // 配置网络代理，解决跨域问题---vue网络代理/axios网络代理
         proxy:{
             '/api':{
-                target:"https://m.maoyan.com",
+                target:"http://43.140.252.159:9123",
                 ws:true,
                 changeOrigin:true,
                 pathRewrite:{
-                    '^/api':''
+                    '^/data':''
                 }
             }
         },

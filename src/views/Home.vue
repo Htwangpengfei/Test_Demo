@@ -31,6 +31,7 @@
 <script>
 import Card from './Card.vue';
 import Search from './Search.vue';
+import http from '../axios/index'
 export default {
   name: "home",
   components: { Card, Search },
@@ -72,27 +73,20 @@ export default {
             }
           ]
         }
-      ]
+      ],
+      data: [],
     }
   },
   created() {},
   methods: {
-     clickChoose(str) {
-       this.item1 = ''
-       this.item2 = ''
-       this.item3 = ''
-       if(str === 'hot'){
-        this.item1 = 'item'
-       }else if(str === 'cinema') {
-        this.item2 = 'item'
-       }else if(str === 'will') {
-        this.item3 = 'item'
-       }
-     },
-     changeCss() {
+    getWWW() {
+      const params = {userEmail: 'denghao1'};
+      http.getHomeMessage(params).then(res => this.data = res.data)
+    },
+    changeCss() {
       this.$store.commit('setCss');
       console.log(this.$store.state.changeCss);
-     }
+    }
   }
 };
 </script>
@@ -105,7 +99,7 @@ export default {
 }
 .header {
   width: 100%;
-  height: 80px;
+  line-height: 80px;
   margin-bottom: 2%;
   background-color: white;
   display: flex;
@@ -137,7 +131,8 @@ export default {
   }
 }
 .home {
-  background-image: url('https://img2.baidu.com/it/u=208352846,2220010711&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=312');
+  // background-image: url('https://img2.baidu.com/it/u=208352846,2220010711&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=312');
+  background-color: rgb(240, 237, 237);
   background-size:cover;
   width: 100%;
 }
