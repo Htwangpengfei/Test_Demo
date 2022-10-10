@@ -24,7 +24,7 @@
     </div>
 
     <!-- 卡片组件 -->
-    <Card class="card" :list="list" />
+    <Card class="card" :list="data" />
   </div>
 </template>
 
@@ -77,15 +77,16 @@ export default {
       data: [],
     }
   },
-  created() {},
+  created() {
+    this.getList();
+  },
   methods: {
-    getWWW() {
+    getList() {
       const params = {userEmail: 'denghao1'};
-      http.getHomeMessage(params).then(res => this.data = res.data)
+      http.getHomeMessage(params).then(res => this.data = res.data.data);
     },
     changeCss() {
       this.$store.commit('setCss');
-      console.log(this.$store.state.changeCss);
     }
   }
 };
@@ -132,7 +133,7 @@ export default {
 }
 .home {
   // background-image: url('https://img2.baidu.com/it/u=208352846,2220010711&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=312');
-  background-color: rgb(240, 237, 237);
+  background-color: #F5F8FA;
   background-size:cover;
   width: 100%;
 }
